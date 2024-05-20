@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>New User</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/add}" th:object="${user}">
+    <label for="Name">Name</label>
+    <p></p>
+    <p th:if="${#fields.hasErrors('name')}" style="color: red; font-weight: bold">Invalid Name</p>
+    <input type="text" th:field="*{name}" id="Name">
+    <p></p>
+    <label for="Age">Age</label>
+    <p></p>
+    <p th:if="${#fields.hasErrors('age')}" style="color: red; font-weight: bold">Invalid Age</p>
+    <input type="text" th:field="*{age}" id="Age">
+    <p></p>
+    <label for="Email">Email</label>
+    <p></p>
+    <p th:if="${#fields.hasErrors('email')}" style="color: red; font-weight: bold">Invalid Email</p>
+    <input type="text" th:field="*{email}" id="Email">
+    <p></p>
+    <input type="submit" value="Add"/>
+    <p></p>
+    <a th:href="@{/users}">Return</a>
+</form>
+
+</body>
+</html>

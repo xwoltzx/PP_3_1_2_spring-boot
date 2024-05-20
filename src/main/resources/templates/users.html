@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Users</title>
+</head>
+<body>
+<table class="table table-light">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}" class="table-secondary">
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getName()}"/>
+        <td th:text="${user.getAge()}"/>
+        <td th:text="${user.getEmail()}"/>
+
+        <td>
+            <a th:href="@{'/edit?id='+${user.getId()}}"> EDIT </a>
+        </td>
+
+        <td>
+            <form th:method="DELETE" th:action="@{'/del?id='+${user.getId()}}" th:object="${user}">
+                <input type="submit" value="DELETE"/>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<form th:method="GET" th:action="@{/new}">
+    <input type="submit" value="Add user">
+</form>
+</body>
+</html>

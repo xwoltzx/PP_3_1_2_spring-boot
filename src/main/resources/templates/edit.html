@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User</title>
+</head>
+
+<body>
+
+<h1>Edit User</h1>
+
+<form th:action="@{/edit}" th:object="${user}" method="post">
+    <p><input type="hidden" th:field="*{id}"/></p>
+    <p th:if="${#fields.hasErrors('name')}"  style="color: red; font-weight: bold">Invalid Name</p>
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p th:if="${#fields.hasErrors('age')}" style="color: red; font-weight: bold">Invalid Age</p>
+    <p>Age: <input type="number" th:field="*{age}"/></p>
+    <p th:if="${#fields.hasErrors('email')}" style="color: red; font-weight: bold">Invalid Email</p>
+    <p>Email: <input type="text" th:field="*{email}"/></p>
+    <p><input type="submit" value="Edit User"/></p>
+</form>
+
+<a th:href="@{/users}">Return</a>
+
+</body>
+</html>
